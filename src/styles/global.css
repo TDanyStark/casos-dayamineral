@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/casos-dayamineral/fonts/Brandon_reg.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/casos-dayamineral/fonts/Brandon_blk.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon";
+  src: url("/apps/abbott/casos-dayamineral/fonts/Brandon_light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@theme{
+  --color-amarillo-abbott: #ffd100;
+  --color-morado-abbott: #b50064;
+  --color-futzia-abbott: #e22a31;
+  --color-orange-abbott: #e86408;
+
+  --font-brandon: "Brandon", sans-serif;
+  --font-georgia: Georgia, serif;
+
+  --gradient-title: 60deg, var(--color-morado-abbott) 0%,  var(--color-amarillo-abbott) 100%;
+  --gradient-btn: 60deg, var(--color-amarillo-abbott) 0%,  var(--color-morado-abbott) 100%;
+
+  --breakpoint-xs: 26rem;
+}

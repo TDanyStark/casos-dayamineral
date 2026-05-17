@@ -1,0 +1,602 @@
+---
+import { URL_BASE } from "@/config";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+---
+
+<Layout>
+  <div
+    id="quiz-wrapper"
+    class="min-h-screen flex flex-col bg-cover bg-center transition-[background-image] duration-300"
+    style={`background-image: url(${URL_BASE}/backgrounds/bg_p_01.webp);`}
+  >
+    <Header abbott="white" dayapoints="white" />
+
+    <main class="mx-auto flex w-full max-w-7xl flex-1 justify-start p-4">
+      <section
+        id="quiz-card"
+        class="w-full p-4 text-black sm:p-6 lg:ml-[3vw] lg:w-[80%] lg:max-w-4xl lg:p-0"
+        aria-live="polite"
+      >
+        <div class="sr-only">
+          <img
+            src={`${URL_BASE}/logos/logo_dayamineral_color.webp`}
+            alt="Dayamineral"
+            class="h-auto w-36 md:w-44"
+          />
+        </div>
+
+        <p class="sr-only">Casos Dayamineral</p>
+
+        <div class="mb-5 flex w-full lg:w-[90%] items-center gap-3 md:mb-6">
+          <div
+            class="h-2.5 flex-1 overflow-hidden rounded-full bg-white/60 shadow-inner"
+            role="progressbar"
+            aria-label="Progreso del quiz"
+            aria-valuemin="1"
+            aria-valuemax="5"
+            aria-valuenow="1"
+            id="quiz-progress"
+          >
+            <div
+              id="quiz-progress-bar"
+              class="h-full rounded-full bg-linear-to-r from-[#c62579] to-[#f4bd18] transition-[width] duration-300"
+              style="width: 20%;"
+            >
+            </div>
+          </div>
+          <button
+            id="quiz-mute"
+            type="button"
+            aria-label="Silenciar sonido"
+            class="shrink-0 rounded-full border border-current p-1.5 transition hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+          >
+            <svg
+              id="quiz-mute-icon-on"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            <svg
+              id="quiz-mute-icon-off"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="hidden"
+            >
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+          </button>
+          <button
+            id="quiz-reset"
+            type="button"
+            class="shrink-0 rounded-full border border-current px-3 py-1 text-xs font-black uppercase tracking-wide transition hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+          >
+            Reset
+          </button>
+        </div>
+
+        <div class="mb-4">
+          <p
+            id="quiz-counter"
+            class="inline-block rounded-full bg-linear-to-r from-[#c62579] to-[#f4bd18] px-6 py-2.5 text-xl font-black uppercase text-white shadow-md"
+          >
+            CASO 1
+          </p>
+        </div>
+
+        <div id="quiz-question-copy" class="mb-6 md:mb-8">
+          <h1
+            id="quiz-question"
+            class="text-balance text-[clamp(1.15rem,1.8vw,1.7rem)] font-normal leading-[1.35] [&_strong]:font-black"
+          >
+            Joaquín, de 2 años, está próximo a iniciar su vida escolar en el
+            kínder. Por lo tanto, requiere reforzar su sistema inmune. <span
+              style="color: #f4bd18; font-weight: 900;"
+              >¿Qué beneficio le aporta Dayamineral a Joaquín?</span
+            >
+          </h1>
+        </div>
+
+        <div id="quiz-answers" class="flex w-full max-w-107.5 flex-col gap-3">
+        </div>
+      </section>
+
+      <section
+        id="quiz-finish"
+        class="hidden w-full rounded-4xl bg-cover bg-center p-6 text-center text-white shadow-2xl md:max-w-xl md:p-8 lg:ml-[3vw] lg:w-[75%] lg:max-w-160"
+        style={`background-image: url(${URL_BASE}/backgrounds/bg_gradient.webp);`}
+        aria-live="polite"
+      >
+        <img
+          src={`${URL_BASE}/iconos/icon_dayapoint.webp`}
+          alt=""
+          class="mx-auto mb-5 h-14 w-14"
+          aria-hidden="true"
+        />
+        <h2 class="text-4xl font-black leading-none md:text-6xl">
+          ¡Casos completados!
+        </h2>
+        <p class="mx-auto mt-4 max-w-md text-lg md:text-xl">
+          Ahora conoce más sobre los beneficios que Dayamineral aporta en cada
+          etapa de la vida.
+        </p>
+        <div class="mx-auto mt-6 grid max-w-md gap-3 sm:grid-cols-2">
+          <div
+            class="rounded-3xl border border-white/30 bg-white/18 p-4 shadow-lg backdrop-blur-sm"
+          >
+            <p
+              id="quiz-correct-count"
+              class="text-5xl font-black leading-none md:text-6xl"
+            >
+              0
+            </p>
+            <p
+              class="mt-2 text-sm font-black uppercase tracking-wide md:text-base"
+            >
+              Dayapoints
+            </p>
+          </div>
+          <div
+            class="rounded-3xl border border-white/30 bg-white/10 p-4 shadow-lg backdrop-blur-sm"
+          >
+            <p
+              id="quiz-incorrect-count"
+              class="text-5xl font-black leading-none md:text-6xl"
+            >
+              0
+            </p>
+            <p
+              class="mt-2 text-sm font-black uppercase tracking-wide md:text-base"
+            >
+              Incorrectas
+            </p>
+          </div>
+        </div>
+        <button
+          id="quiz-restart"
+          type="button"
+          class="mt-8 rounded-full bg-[#f4bd18] px-8 py-4 text-lg font-black uppercase text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Reiniciar
+        </button>
+      </section>
+    </main>
+
+    <footer
+      id="quiz-footer"
+      class="mx-auto flex w-full max-w-7xl px-4 pb-4 text-[0.625rem] font-normal leading-snug text-black/80 transition-colors sm:text-xs"
+    >
+      <div class="w-full lg:ml-[3vw] lg:w-[75%] lg:max-w-160">
+        <div id="quiz-footer-references"></div>
+      </div>
+    </footer>
+
+    <div
+      id="quiz-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <article
+        id="modal-card"
+        class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-4xl p-6 text-white shadow-2xl md:p-8 flex flex-col items-center text-center" style={`background-image: url(${URL_BASE}/backgrounds/bg_gradient.webp); background-size: cover; background-position: center;`}
+      >
+        <div class="mb-4 text-center">
+          <img
+            id="modal-icon"
+            src={`${URL_BASE}/iconos/icon_dayapoint.webp`}
+            alt=""
+            class="mx-auto mb-3 h-auto w-20"
+            aria-hidden="true"
+          />
+          <h2
+            id="modal-title"
+            class="text-3xl font-black leading-none md:text-5xl"
+          >
+            ¡Anótese un Dayapoint!
+          </h2>
+        </div>
+        <p id="modal-message" class="text-lg leading-relaxed md:text-xl"></p>
+        <button
+          id="modal-next"
+          type="button"
+          class="mt-7 w-full rounded-full bg-[#f4bd18] px-8 py-4 text-lg font-black uppercase text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+        >
+          SIGUIENTE
+        </button>
+      </article>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import confetti from "canvas-confetti";
+
+  window.quizConfetti = confetti;
+</script>
+
+<script is:inline define:vars={{ URL_BASE }}>
+  const sharedReferencesHtml =
+    "<strong>Referencias:</strong> <strong>1.</strong> Garg V, Lin J, Gadzhieva-Moore A, et al. The role of multivitamin and mineral supplements in supporting health and well-being: a retrospective cross-sectional study in Taiwan. J Health Popul Nutr. 2025;44(1):423. <strong>2.</strong> Harvard Health Publishing. Making sense of vitamins and minerals: choosing the foods and nutrients you need to stay healthy [Internet]. Boston (MA): Harvard Medical School; 2022. Disponible en: https://n9.cl/peog1 <strong>3.</strong> Office of Dietary Supplements. Choline: fact sheet for health professionals [Internet]. Bethesda (MD): National Institutes of Health; 2024. Disponible en: https://n9.cl/du2tx <strong>4.</strong> Meixner M. Inositol: benefits, side effects and dosage [Internet]. Healthline; 2023. Disponible en: https://n9.cl/8wm3v <strong>5.</strong> Lee CY. Effects of dietary vitamins on obesity-related metabolic parameters. J Nutr Sci. 2023 Apr 12;12:e47.";
+
+  const questions = [
+    {
+      questionHtml:
+        '<strong>Joaquín, de 2 años,</strong> está próximo a iniciar su vida escolar en el kínder. Por lo tanto, requiere reforzar su sistema inmune. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Joaquín?</span>',
+      options: [
+        { label: "Fortalece sus defensas con vitaminas A, C, D y zinc." },
+        { label: "Ayuda a que NUNCA se enferme." },
+        {
+          label:
+            "Nunca debe lavarse las manos porque ya tiene una buena inmunidad.",
+        },
+        { label: "Le evita todo tipo de virus y bacterias." },
+      ],
+      correct: "Fortalece sus defensas con vitaminas A, C, D y zinc.",
+      message:
+        "Dayamineral aporta vitaminas A, C, D y zinc, micronutrientes clave para el correcto funcionamiento del sistema inmune en la edad preescolar, etapa en la que la exposición a nuevos entornos aumenta las necesidades de soporte inmunitario.",
+      referencesHtml: sharedReferencesHtml,
+      textColor: "#ffffff",
+      logoVariant: "light",
+    },
+    {
+      questionHtml:
+        '<strong>Martina, de 12 años,</strong> reparte su jornada entre el colegio y las clases de natación, por lo que requiere una ingesta adecuada de micronutrientes para asegurar un desarrollo óptimo al tiempo que se desempeña con excelencia en todas sus actividades. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Martina?</span>',
+      options: [
+        {
+          label:
+            "Vuelve más lento el metabolismo con las vitaminas y minerales.",
+        },
+        { label: "Previene la anemia al 100% con la ingesta de hierro." },
+        {
+          label:
+            "Ayuda al desarrollo físico, con vitamina D, complejo B y calcio, al tiempo que favorece la memoria y concentración con colina, inositol y hierro.",
+        },
+        { label: "Mejora la visión nocturna con vitamina C." },
+      ],
+      correct:
+        "Ayuda al desarrollo físico, con vitamina D, complejo B y calcio, al tiempo que favorece la memoria y concentración con colina, inositol y hierro.",
+      message:
+        "En la etapa escolar y deportiva, la combinación de vitamina D, complejo B y calcio favorece el desarrollo físico, mientras que la colina, el inositol y el hierro contribuyen a la memoria y la concentración necesarias para un buen desempeño académico y deportivo.",
+      referencesHtml: sharedReferencesHtml,
+      textColor: "#ffffff",
+      logoVariant: "light",
+    },
+    {
+      questionHtml:
+        '<strong>Manuel, de 26 años,</strong> tiene un ritmo de vida agitado: trabaja, entrena en el gimnasio y cursa una maestría, por lo que requiere energía física y mental sin afectar su peso corporal. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Manuel?</span>',
+      options: [
+        { label: "Actúa como un sustituto de una de las comidas del día." },
+        { label: "Mejora la coordinación motriz fina." },
+        { label: "Ayuda a bajar grasa corporal." },
+        {
+          label:
+            "Activa el metabolismo y combate el cansancio con complejo B, vitamina C y hierro.",
+        },
+      ],
+      correct:
+        "Activa el metabolismo y combate el cansancio con complejo B, vitamina C y hierro.",
+      message:
+        "El complejo B, la vitamina C y el hierro participan en el metabolismo energético y en el transporte de oxígeno, ayudando a sostener la energía física y mental que requiere un estilo de vida exigente sin sustituir comidas ni alterar el peso corporal.",
+      referencesHtml: sharedReferencesHtml,
+      textColor: "#ffffff",
+      logoVariant: "light",
+    },
+    {
+      questionHtml:
+        '<strong>Rocío, de 42 años,</strong> es una madre de familia multitarea que equilibra un trabajo de oficina de 8 a 5, el cuidado de sus hijos, las labores del hogar y el ejercicio físico durante la semana. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Rocío?</span>',
+      options: [
+        {
+          label:
+            "Energía y vitalidad necesarias para cumplir todas sus tareas del día a día.",
+        },
+        { label: "Previene el envejecimiento prematuro." },
+        { label: "Le ayuda a conciliar mejor el sueño por su melatonina." },
+        { label: "Hace que el tiempo le rinda más." },
+      ],
+      correct:
+        "Energía y vitalidad necesarias para cumplir todas sus tareas del día a día.",
+      message:
+        "Dayamineral aporta vitaminas y minerales que apoyan el metabolismo energético y la vitalidad, ayudando a una mujer adulta multitarea a sostener su rendimiento durante las múltiples actividades del día.",
+      referencesHtml: sharedReferencesHtml,
+      textColor: "#ffffff",
+      logoVariant: "light",
+    },
+    {
+      questionHtml:
+        '<strong>Nicolás, de 5 años,</strong> suele dejar su plato de comida a medio llenar después de la cena, por lo que sus padres no están seguros de que esté recibiendo los micronutrientes necesarios para su desarrollo adecuado y se sienten preocupados. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Nicolás?</span>',
+      options: [
+        {
+          label:
+            "Mejora el apetito para que Nicolás se coma todo lo que hay en el plato.",
+        },
+        { label: "Acelera el metabolismo para que crezca más rápido." },
+        {
+          label:
+            "Aporta la cantidad necesaria de micronutrientes para crecer, aprender y mantenerse sano.",
+        },
+        {
+          label:
+            "Permite que Nicolás pueda saltarse la cena sin consecuencias.",
+        },
+      ],
+      correct:
+        "Aporta la cantidad necesaria de micronutrientes para crecer, aprender y mantenerse sano.",
+      message:
+        "Cuando la ingesta alimentaria es insuficiente o irregular, Dayamineral complementa la dieta aportando los micronutrientes necesarios para que un niño en edad preescolar pueda crecer, aprender y mantenerse sano.",
+      referencesHtml: sharedReferencesHtml,
+      textColor: "#ffffff",
+      logoVariant: "light",
+    },
+  ];
+
+  const backgrounds = [
+    "bg_p_01.webp",
+    "bg_p_2.webp",
+    "bg_p_3.webp",
+    "bg_p_4.webp",
+    "bg_p_5.webp",
+  ];
+
+
+  const wrapper = document.getElementById("quiz-wrapper");
+
+  const headerCode = document.getElementById("quiz-header-code");
+  const quizCard = document.getElementById("quiz-card");
+  const finishCard = document.getElementById("quiz-finish");
+  const progress = document.getElementById("quiz-progress");
+  const progressBar = document.getElementById("quiz-progress-bar");
+  const resetButton = document.getElementById("quiz-reset");
+  const muteButton = document.getElementById("quiz-mute");
+  const muteIconOn = document.getElementById("quiz-mute-icon-on");
+  const muteIconOff = document.getElementById("quiz-mute-icon-off");
+  const questionCopy = document.getElementById("quiz-question-copy");
+  const counter = document.getElementById("quiz-counter");
+  const questionText = document.getElementById("quiz-question");
+  const answersContainer = document.getElementById("quiz-answers");
+  const footer = document.getElementById("quiz-footer");
+  const footerReferences = document.getElementById("quiz-footer-references");
+  const modal = document.getElementById("quiz-modal");
+  const modalCard = document.getElementById("modal-card");
+  const modalIcon = document.getElementById("modal-icon");
+  const modalTitle = document.getElementById("modal-title");
+  const modalMessage = document.getElementById("modal-message");
+  const modalNext = document.getElementById("modal-next");
+  const correctCount = document.getElementById("quiz-correct-count");
+  const incorrectCount = document.getElementById("quiz-incorrect-count");
+  const restartButton = document.getElementById("quiz-restart");
+  let currentQuestion = 0;
+  let correctAnswers = 0;
+  let questionAnswered = false;
+  let confettiTimer;
+  let isMuted = false;
+
+  const failSound = new Audio(`${URL_BASE}/sounds/fail.mp3`);
+  const confettiSound = new Audio(`${URL_BASE}/sounds/confetti.mp3`);
+
+  const playSound = (audio) => {
+    if (isMuted) return;
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  };
+
+  const setBackground = (index) => {
+    wrapper.style.backgroundImage = `url(${URL_BASE}/backgrounds/${backgrounds[index]})`;
+  };
+
+  const setHeaderLogos = (logoVariant) => {
+    const isDark = logoVariant === "dark";
+    const abbottLight = document.getElementById("header-abbott-light");
+    const abbottDark  = document.getElementById("header-abbott-dark");
+    const dayaLight   = document.getElementById("header-daya-light");
+    const dayaDark    = document.getElementById("header-daya-dark");
+    if (abbottLight) abbottLight.style.display = isDark ? "none" : "";
+    if (abbottDark)  abbottDark.style.display  = isDark ? ""     : "none";
+    if (dayaLight)   dayaLight.style.display   = isDark ? "none" : "";
+    if (dayaDark)    dayaDark.style.display    = isDark ? ""     : "none";
+    if (headerCode)  headerCode.style.color    = isDark ? "#111827" : "#ffffff";
+  };
+
+  const letters = ["A", "B", "C", "D", "E"];
+
+  const renderQuestion = () => {
+    const question = questions[currentQuestion];
+    questionAnswered = false;
+    const progressValue = currentQuestion + 1;
+    progress.setAttribute("aria-valuemax", String(questions.length));
+    progress.setAttribute("aria-valuenow", String(progressValue));
+    progressBar.style.width = `${(progressValue / questions.length) * 100}%`;
+    counter.textContent = `CASO ${currentQuestion + 1}`;
+    questionText.innerHTML = question.questionHtml;
+    questionText.style.color = question.textColor;
+    resetButton.style.color = question.textColor;
+    muteButton.style.color = question.textColor;
+    footer.style.color = question.textColor;
+    footerReferences.innerHTML = question.referencesHtml;
+    footer.classList.remove("hidden");
+    setHeaderLogos(question.logoVariant);
+    modalNext.textContent =
+      currentQuestion === questions.length - 1 ? "FINALIZAR" : "SIGUIENTE";
+
+    const isDark = question.logoVariant === "dark";
+    const btnClass = isDark
+      ? "quiz-answer flex items-center gap-3 rounded-full border border-black/25 bg-white/65 px-5 py-3.5 text-left text-sm font-medium leading-snug text-black backdrop-blur-sm transition hover:bg-[#f4bd18] hover:border-[#f4bd18] hover:text-white hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black/50 md:gap-4 md:px-6 md:py-4 md:text-base"
+      : "quiz-answer flex items-center gap-3 rounded-full border border-white/55 bg-white/12 px-5 py-3.5 text-left text-sm font-medium leading-snug text-white backdrop-blur-sm transition hover:bg-[#f4bd18] hover:border-[#f4bd18] hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white md:gap-4 md:px-6 md:py-4 md:text-base";
+
+    answersContainer.replaceChildren(
+      ...question.options.map((option, i) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = btnClass;
+        button.dataset.answer = option.label;
+        const letterSpan = document.createElement("span");
+        letterSpan.className = "shrink-0 font-black";
+        letterSpan.textContent = `${letters[i]}.`;
+        const label = document.createElement("span");
+        label.textContent = option.label;
+        label.className = "flex-1";
+        button.append(letterSpan, label);
+        button.addEventListener("click", () => {
+          openModal(option.label);
+        });
+        return button;
+      }),
+    );
+    setBackground(currentQuestion);
+  };
+
+  const launchSideConfetti = () => {
+    const confetti = window.quizConfetti;
+
+    if (!confetti) return;
+
+    confetti({
+      particleCount: 70,
+      spread: 55,
+      angle: 60,
+      origin: { x: 0, y: 0.55 },
+      colors: ["#c62579", "#f4bd18", "#ffffff"],
+    });
+    confetti({
+      particleCount: 70,
+      spread: 55,
+      angle: 120,
+      origin: { x: 1, y: 0.55 },
+      colors: ["#c62579", "#f4bd18", "#ffffff"],
+    });
+  };
+
+  const launchPerfectFinishConfetti = () => {
+    const confetti = window.quizConfetti;
+
+    if (!confetti) return;
+
+    const end = Date.now() + 3000;
+    clearInterval(confettiTimer);
+    confettiTimer = setInterval(() => {
+      confetti({
+        particleCount: 55,
+        spread: 360,
+        startVelocity: 32,
+        origin: { x: Math.random(), y: Math.random() * 0.55 },
+        colors: ["#c62579", "#f4bd18", "#ffffff"],
+      });
+
+      if (!isMuted) {
+        const burst = confettiSound.cloneNode();
+        burst.volume = 0.5;
+        burst.play().catch(() => {});
+      }
+
+      if (Date.now() > end) {
+        clearInterval(confettiTimer);
+      }
+    }, 250);
+  };
+
+  const resetQuiz = () => {
+    clearInterval(confettiTimer);
+    currentQuestion = 0;
+    correctAnswers = 0;
+    closeModal();
+    finishCard.classList.add("hidden");
+    quizCard.classList.remove("hidden");
+    renderQuestion();
+  };
+
+  const openModal = (selectedAnswer) => {
+    if (questionAnswered) return;
+
+    questionAnswered = true;
+    const question = questions[currentQuestion];
+    const isCorrect = selectedAnswer === question.correct;
+
+    if (isCorrect) {
+      correctAnswers += 1;
+      launchSideConfetti();
+      playSound(confettiSound);
+    } else {
+      playSound(failSound);
+    }
+
+    modalTitle.textContent = isCorrect
+      ? "¡Anótese un Dayapoint!"
+      : "¡UPS, RESPUESTA INCORRECTA!";
+    modalIcon.src = isCorrect
+      ? `${URL_BASE}/iconos/icon_dayapoint.webp`
+      : `${URL_BASE}/iconos/icon_sad.webp`;
+    modalMessage.textContent = question.message;
+    modalCard.style.backgroundImage = isCorrect
+      ? `url(${URL_BASE}/backgrounds/bg_gradient.webp)`
+      : "linear-gradient(135deg, #1f2937, #374151)";
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    modalNext.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  };
+
+  const showFinish = () => {
+    quizCard.classList.add("hidden");
+    footer.classList.add("hidden");
+    finishCard.classList.remove("hidden");
+    correctCount.textContent = String(correctAnswers);
+    incorrectCount.textContent = String(questions.length - correctAnswers);
+    setHeaderLogos("dark");
+    wrapper.style.backgroundImage = `url(${URL_BASE}/backgrounds/bg_home.webp)`;
+
+    if (correctAnswers === questions.length) {
+      launchPerfectFinishConfetti();
+    }
+  };
+
+  modalNext.addEventListener("click", () => {
+    closeModal();
+
+    if (currentQuestion === questions.length - 1) {
+      showFinish();
+      return;
+    }
+
+    currentQuestion += 1;
+    renderQuestion();
+  });
+
+  resetButton.addEventListener("click", resetQuiz);
+  restartButton.addEventListener("click", resetQuiz);
+
+  muteButton.addEventListener("click", () => {
+    isMuted = !isMuted;
+    muteIconOn.classList.toggle("hidden", isMuted);
+    muteIconOff.classList.toggle("hidden", !isMuted);
+    muteButton.setAttribute(
+      "aria-label",
+      isMuted ? "Activar sonido" : "Silenciar sonido",
+    );
+  });
+
+  renderQuestion();
+</script>
