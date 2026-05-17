@@ -521,6 +521,21 @@ import Header from "@/components/Header.astro";
     closeModal();
     finishCard.classList.add("hidden");
     quizCard.classList.remove("hidden");
+
+    // Revertir src del header a las versiones blancas
+    const header = document.querySelector("header");
+    if (header) {
+      header.querySelectorAll("img").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        if (src.includes("abbott_black")) {
+          img.src = src.replace("abbott_black", "abbott_white");
+        }
+        if (src.includes("logo_dayamineral_color")) {
+          img.src = src.replace("logo_dayamineral_color", "logo_dayamineral_white");
+        }
+      });
+    }
+
     renderQuestion();
   };
 
@@ -560,12 +575,31 @@ import Header from "@/components/Header.astro";
   };
 
   const showFinish = () => {
+    console.log("[quiz] showFinish called");
     quizCard.classList.add("hidden");
     footer.classList.add("hidden");
     finishCard.classList.remove("hidden");
     correctCount.textContent = String(correctAnswers);
     incorrectCount.textContent = String(questions.length - correctAnswers);
     setHeaderLogos("dark");
+
+    // Forzado bruto: cambia src directamente en TODAS las img del header
+    const header = document.querySelector("header");
+    if (header) {
+      header.querySelectorAll("img").forEach((img) => {
+        const src = img.getAttribute("src") || "";
+        if (src.includes("abbott_white")) {
+          img.src = src.replace("abbott_white", "abbott_black");
+        }
+        if (src.includes("logo_dayamineral_white")) {
+          img.src = src.replace("logo_dayamineral_white", "logo_dayamineral_color");
+        }
+      });
+      console.log("[quiz] header imgs after swap:", [...header.querySelectorAll("img")].map(i => i.src));
+    } else {
+      console.warn("[quiz] no <header> found in DOM");
+    }
+
     wrapper.style.backgroundImage = `url(${URL_BASE}/backgrounds/bg_home.webp)`;
 
     if (correctAnswers === questions.length) {
