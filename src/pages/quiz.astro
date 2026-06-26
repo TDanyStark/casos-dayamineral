@@ -40,7 +40,7 @@ import Header from "@/components/Header.astro";
           >
             <div
               id="quiz-progress-bar"
-              class="h-full rounded-full bg-linear-to-r from-[#c62579] to-[#f4bd18] transition-[width] duration-300"
+              class="h-full rounded-full bg-orange-abbott transition-[width] duration-300"
               style="width: 20%;"
             >
             </div>
@@ -97,7 +97,7 @@ import Header from "@/components/Header.astro";
         <div class="mb-4">
           <p
             id="quiz-counter"
-            class="inline-block rounded-full bg-linear-to-r from-[#c62579] to-[#f4bd18] px-6 py-2.5 text-xl font-black uppercase text-white shadow-md"
+            class="inline-block rounded-full text-4xl font-black uppercase text-orange-abbott text-shadow-black"
           >
             CASO 1
           </p>
@@ -110,7 +110,7 @@ import Header from "@/components/Header.astro";
           >
             Joaquín, de 2 años, está próximo a iniciar su vida escolar en el
             kínder. Por lo tanto, requiere reforzar su sistema inmune. <span
-              style="color: #f4bd18; font-weight: 900;"
+              style="font-weight: 900;"
               >¿Qué beneficio le aporta Dayamineral a Joaquín?</span
             >
           </h1>
@@ -122,14 +122,13 @@ import Header from "@/components/Header.astro";
 
       <section
         id="quiz-finish"
-        class="hidden w-full rounded-4xl bg-cover bg-center p-6 text-center text-white shadow-2xl md:max-w-xl md:p-8 lg:ml-[3vw] lg:w-[75%] lg:max-w-160"
-        style={`background-image: url(${URL_BASE}/backgrounds/bg_gradient.webp);`}
+        class="hidden w-full rounded-4xl bg-cover bg-center p-6 text-center text-white shadow-2xl md:max-w-xl md:p-8 lg:ml-[3vw] lg:w-[75%] lg:max-w-160 bg-orange-abbott"
         aria-live="polite"
       >
         <img
           src={`${URL_BASE}/iconos/icon_dayapoint.webp`}
           alt=""
-          class="mx-auto mb-5 h-14 w-14"
+          class="mx-auto mb-5 h-auto w-14"
           aria-hidden="true"
         />
         <h2 class="text-4xl font-black leading-none md:text-6xl">
@@ -174,7 +173,7 @@ import Header from "@/components/Header.astro";
         <button
           id="quiz-restart"
           type="button"
-          class="mt-8 rounded-full bg-[#f4bd18] px-8 py-4 text-lg font-black uppercase text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white"
+          class="mt-8 rounded-full bg-white px-8 py-4 text-lg font-black uppercase text-orange-abbott shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Reiniciar
         </button>
@@ -183,10 +182,15 @@ import Header from "@/components/Header.astro";
 
     <footer
       id="quiz-footer"
-      class="mx-auto flex w-full max-w-7xl px-4 pb-4 text-[0.625rem] font-normal leading-snug text-black/80 transition-colors sm:text-xs"
+      class="mx-auto flex flex-col lg:flex-row w-full max-w-7xl px-4 pb-4 text-[0.625rem] font-normal leading-snug text-black/80 transition-colors sm:text-xs gap-10"
     >
       <div class="w-full lg:ml-[3vw] lg:w-[75%] lg:max-w-160">
         <div id="quiz-footer-references"></div>
+      </div>
+      <div class="w-full max-w-lg flex flex-col justify-end">
+        <p class="text-xs text-white text-left lg:text-right">
+          USO EXCLUSIVO PARA PROFESIONALES MÉDICOS <b>CAC-26-0604</b>
+        </p>
       </div>
     </footer>
 
@@ -199,7 +203,7 @@ import Header from "@/components/Header.astro";
     >
       <article
         id="modal-card"
-        class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-4xl p-6 text-white shadow-2xl md:p-8 flex flex-col items-center text-center" style={`background-image: url(${URL_BASE}/backgrounds/bg_gradient.webp); background-size: cover; background-position: center;`}
+        class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-4xl p-6 text-white shadow-2xl md:p-8 flex flex-col items-center text-center bg-orange-abbott"
       >
         <div class="mb-4 text-center">
           <img
@@ -220,7 +224,7 @@ import Header from "@/components/Header.astro";
         <button
           id="modal-next"
           type="button"
-          class="mt-7 w-full rounded-full bg-[#f4bd18] px-8 py-4 text-lg font-black uppercase text-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
+          class="mt-7 w-full rounded-full bg-white px-8 py-4 text-lg font-black uppercase text-orange-abbott shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto"
         >
           SIGUIENTE
         </button>
@@ -242,7 +246,7 @@ import Header from "@/components/Header.astro";
   const questions = [
     {
       questionHtml:
-        '<strong>Joaquín, de 2 años,</strong> está próximo a iniciar su vida escolar en el kínder. Por lo tanto, requiere reforzar su sistema inmune. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Joaquín?</span>',
+        '<strong>Joaquín, de 2 años,</strong> está próximo a iniciar su vida escolar en el kínder. Por lo tanto, requiere reforzar su sistema inmune. <span style="font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Joaquín?</span>',
       options: [
         { label: "Fortalece sus defensas con vitaminas A, C, D y zinc." },
         { label: "Ayuda a que NUNCA se enferme." },
@@ -261,7 +265,7 @@ import Header from "@/components/Header.astro";
     },
     {
       questionHtml:
-        '<strong>Martina, de 12 años,</strong> reparte su jornada entre el colegio y las clases de natación, por lo que requiere una ingesta adecuada de micronutrientes para asegurar un desarrollo óptimo al tiempo que se desempeña con excelencia en todas sus actividades. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Martina?</span>',
+        '<strong>Martina, de 12 años,</strong> reparte su jornada entre el colegio y las clases de natación, por lo que requiere una ingesta adecuada de micronutrientes para asegurar un desarrollo óptimo al tiempo que se desempeña con excelencia en todas sus actividades. <span style="font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Martina?</span>',
       options: [
         {
           label:
@@ -284,7 +288,7 @@ import Header from "@/components/Header.astro";
     },
     {
       questionHtml:
-        '<strong>Manuel, de 26 años,</strong> tiene un ritmo de vida agitado: trabaja, entrena en el gimnasio y cursa una maestría, por lo que requiere energía física y mental sin afectar su peso corporal. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Manuel?</span>',
+        '<strong>Manuel, de 26 años,</strong> tiene un ritmo de vida agitado: trabaja, entrena en el gimnasio y cursa una maestría, por lo que requiere energía física y mental sin afectar su peso corporal. <span style="font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Manuel?</span>',
       options: [
         { label: "Actúa como un sustituto de una de las comidas del día." },
         { label: "Mejora la coordinación motriz fina." },
@@ -304,7 +308,7 @@ import Header from "@/components/Header.astro";
     },
     {
       questionHtml:
-        '<strong>Rocío, de 42 años,</strong> es una madre de familia multitarea que equilibra un trabajo de oficina de 8 a 5, el cuidado de sus hijos, las labores del hogar y el ejercicio físico durante la semana. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Rocío?</span>',
+        '<strong>Rocío, de 42 años,</strong> es una madre de familia multitarea que equilibra un trabajo de oficina de 8 a 5, el cuidado de sus hijos, las labores del hogar y el ejercicio físico durante la semana. <span style="font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Rocío?</span>',
       options: [
         {
           label:
@@ -324,7 +328,7 @@ import Header from "@/components/Header.astro";
     },
     {
       questionHtml:
-        '<strong>Nicolás, de 5 años,</strong> suele dejar su plato de comida a medio llenar después de la cena, por lo que sus padres no están seguros de que esté recibiendo los micronutrientes necesarios para su desarrollo adecuado y se sienten preocupados. <span style="color: #f4bd18; font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Nicolás?</span>',
+        '<strong>Nicolás, de 5 años,</strong> suele dejar su plato de comida a medio llenar después de la cena, por lo que sus padres no están seguros de que esté recibiendo los micronutrientes necesarios para su desarrollo adecuado y se sienten preocupados. <span style="font-weight: 900;">¿Qué beneficio le aporta Dayamineral a Nicolás?</span>',
       options: [
         {
           label:
@@ -357,7 +361,6 @@ import Header from "@/components/Header.astro";
     "bg_p_4.webp",
     "bg_p_5.webp",
   ];
-
 
   const wrapper = document.getElementById("quiz-wrapper");
 
@@ -407,14 +410,14 @@ import Header from "@/components/Header.astro";
   const setHeaderLogos = (logoVariant) => {
     const isDark = logoVariant === "dark";
     const abbottLight = document.getElementById("header-abbott-light");
-    const abbottDark  = document.getElementById("header-abbott-dark");
-    const dayaLight   = document.getElementById("header-daya-light");
-    const dayaDark    = document.getElementById("header-daya-dark");
+    const abbottDark = document.getElementById("header-abbott-dark");
+    const dayaLight = document.getElementById("header-daya-light");
+    const dayaDark = document.getElementById("header-daya-dark");
     if (abbottLight) abbottLight.style.display = isDark ? "none" : "";
-    if (abbottDark)  abbottDark.style.display  = isDark ? ""     : "none";
-    if (dayaLight)   dayaLight.style.display   = isDark ? "none" : "";
-    if (dayaDark)    dayaDark.style.display    = isDark ? ""     : "none";
-    if (headerCode)  headerCode.style.color    = isDark ? "#111827" : "#ffffff";
+    if (abbottDark) abbottDark.style.display = isDark ? "" : "none";
+    if (dayaLight) dayaLight.style.display = isDark ? "none" : "";
+    if (dayaDark) dayaDark.style.display = isDark ? "" : "none";
+    if (headerCode) headerCode.style.color = isDark ? "#111827" : "#ffffff";
   };
 
   const letters = ["A", "B", "C", "D", "E"];
@@ -440,8 +443,8 @@ import Header from "@/components/Header.astro";
 
     const isDark = question.logoVariant === "dark";
     const btnClass = isDark
-      ? "quiz-answer flex items-center gap-3 rounded-full border border-black/25 bg-white/65 px-5 py-3.5 text-left text-sm font-medium leading-snug text-black backdrop-blur-sm transition hover:bg-[#f4bd18] hover:border-[#f4bd18] hover:text-white hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black/50 md:gap-4 md:px-6 md:py-4 md:text-base"
-      : "quiz-answer flex items-center gap-3 rounded-full border border-white/55 bg-white/12 px-5 py-3.5 text-left text-sm font-medium leading-snug text-white backdrop-blur-sm transition hover:bg-[#f4bd18] hover:border-[#f4bd18] hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white md:gap-4 md:px-6 md:py-4 md:text-base";
+      ? "quiz-answer flex items-center gap-3 rounded-xl border border-black/25 bg-white/65 px-5 py-3.5 text-left text-sm font-medium leading-snug text-black hover:bg-orange-abbott hover:border-[#f4bd18] hover:text-white hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black/50 md:gap-4 md:px-6 md:py-4 md:text-base"
+      : "quiz-answer flex items-center gap-3 rounded-xl bg-morado-abbott px-5 py-3.5 text-left text-sm font-medium leading-snug text-white hover:bg-orange-abbott hover:border-[#f4bd18] hover:-translate-y-0.5 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white md:gap-4 md:px-6 md:py-4 md:text-base";
 
     answersContainer.replaceChildren(
       ...question.options.map((option, i) => {
@@ -531,7 +534,10 @@ import Header from "@/components/Header.astro";
           img.src = src.replace("abbott_black", "abbott_white");
         }
         if (src.includes("logo_dayamineral_color")) {
-          img.src = src.replace("logo_dayamineral_color", "logo_dayamineral_white");
+          img.src = src.replace(
+            "logo_dayamineral_color",
+            "logo_dayamineral_white",
+          );
         }
       });
     }
@@ -561,9 +567,10 @@ import Header from "@/components/Header.astro";
       ? `${URL_BASE}/iconos/icon_dayapoint.webp`
       : `${URL_BASE}/iconos/icon_sad.webp`;
     modalMessage.textContent = question.message;
-    modalCard.style.backgroundImage = isCorrect
-      ? `url(${URL_BASE}/backgrounds/bg_gradient.webp)`
-      : "linear-gradient(135deg, #1f2937, #374151)";
+    modalCard.classList.toggle("bg-orange-abbott", isCorrect);
+    modalCard.classList.toggle("bg-red-abbott", !isCorrect);
+    modalNext.classList.toggle("text-orange-abbott", isCorrect);
+    modalNext.classList.toggle("text-red-abbott", !isCorrect);
     modal.classList.remove("hidden");
     modal.classList.add("flex");
     modalNext.focus();
@@ -592,10 +599,16 @@ import Header from "@/components/Header.astro";
           img.src = src.replace("abbott_white", "abbott_black");
         }
         if (src.includes("logo_dayamineral_white")) {
-          img.src = src.replace("logo_dayamineral_white", "logo_dayamineral_color");
+          img.src = src.replace(
+            "logo_dayamineral_white",
+            "logo_dayamineral_color",
+          );
         }
       });
-      console.log("[quiz] header imgs after swap:", [...header.querySelectorAll("img")].map(i => i.src));
+      console.log(
+        "[quiz] header imgs after swap:",
+        [...header.querySelectorAll("img")].map((i) => i.src),
+      );
     } else {
       console.warn("[quiz] no <header> found in DOM");
     }

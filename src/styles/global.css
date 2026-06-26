@@ -23,9 +23,10 @@
 
 @theme{
   --color-amarillo-abbott: #ffd100;
-  --color-morado-abbott: #b50064;
+  --color-morado-abbott: #aa0061;
   --color-futzia-abbott: #e22a31;
-  --color-orange-abbott: #e86408;
+  --color-orange-abbott: #ff6900;
+  --color-red-abbott: #e4002b;
 
   --font-brandon: "Brandon", sans-serif;
   --font-georgia: Georgia, serif;
