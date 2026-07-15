@@ -11,27 +11,31 @@ import Layout from "@/layouts/Layout.astro";
   >
     <Header />
     <main
-      class="w-7xl mx-auto max-w-full p-4 md:p-6 flex-1 flex flex-col lg:flex-row h-full"
+      class="w-7xl mx-auto max-w-full p-4 md:p-6 flex-1 flex flex-col lg:flex-row h-full gap-8"
     >
-      <div class="w-full lg:w-1/2 flex flex-col items-start">
-        <h1 class="text-4xl lg:text-6xl font-bold text-orange-abbott mb-2">
-          <span class="font-light">CASOS</span>
-          <span
-            class="block rounded-full"
-            style="font-size:1.15em;">DAYAMINERAL</span
+      <div class="w-full lg:w-1/2 flex flex-col justify-between items-start flex-1">
+        <div>
+          <h1 class="text-4xl lg:text-6xl font-bold text-orange-abbott mb-2">
+            <span class="font-light">CASOS</span>
+            <span class="block rounded-full" style="font-size:1.15em;"
+              >DAYAMINERAL</span
+            >
+          </h1>
+          <p class="mt-4 text-2xl xs:text-3xl text-black">
+            Seleccione en cada caso el beneficio que aporta Dayamineral.
+          </p>
+          <a
+            class="my-8 text-2xl lg:text-3xl text-white font-bold py-3 px-6 rounded-full flex items-center bg-morado-abbott hover:scale-105 transition-transform duration-300"
+            href={`${URL_BASE}/quiz`}
           >
-        </h1>
-        <p class="mt-4 text-2xl xs:text-3xl text-black">
-          Seleccione en cada caso el beneficio que aporta Dayamineral.
-        </p>
-        <a
-          class="my-8 text-2xl lg:text-3xl text-white font-bold py-3 px-6 rounded-full flex items-center bg-morado-abbott hover:scale-105 transition-transform duration-300"
-          href={`${URL_BASE}/quiz`}
-        >
-          COMENZAR
-        </a>
+            COMENZAR
+          </a>
+        </div>
+        <div>
+          <p class="text-xs text-white lg:text-black text-shadow-lg">Antes de consumir este medicamento, lea la información de la etiqueta. No se automedique. Consulte a su médico o farmacéutico si tiene dudas o si los síntomas persisten. Todo medicamento puede causar efectos secundarios. No exceda la dosis recomendada y manténgase fuera del alcance de los niños.</p>
+        </div>
       </div>
-      <div class="w-full lg:w-1/2 flex flex-col items-end justify-end flex-1">
+      <div class="w-full lg:w-1/2 flex flex-col lg:items-end lg:justify-end">
         <div class="flex">
           <p class="text-xs text-white">
             USO EXCLUSIVO PARA PROFESIONALES MÉDICOS <b>CAC-26-0604</b>
